@@ -1,5 +1,4 @@
 import record_holder
-from record_holder import chainsaw_juggling_record
 import sqlite3
 from unittest import TestCase
 
@@ -18,8 +17,8 @@ class TestRecordHoldersDB(TestCase):
     
     def test_add_new_record_holder(self):
 
-        chainsaw_juggling_record.add_record_holder('Janne Mustonen', 'Finland', 98)
-        chainsaw_juggling_record.add_record_holder('Ian Stewart', 'Canada', 94)
+        record_holder.add_record_holder('Janne Mustonen', 'Finland', 98)
+        record_holder.add_record_holder('Ian Stewart', 'Canada', 94)
         
         expected1 = {'Janne Mustonen', 'Finland', 98}
         expected2 = {'Ian Stewart', 'Canada', 94}
