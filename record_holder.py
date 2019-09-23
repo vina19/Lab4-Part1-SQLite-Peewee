@@ -9,6 +9,12 @@ db = 'chainsaw_juggling_db.sqlite'
 # Create a table name records if it doesn't exist
 con.execute('CREATE TABLE IF NOT EXISTS records (name TEXT, country TEXT, number_catches INTEGER)')
 
+# Add data for testing
+con.execute('INSERT INTO records VALUES ("Janne Mustonen", "Finland", 98)')
+con.execute('INSERT INTO records VALUES ("Ian Stewart", "Canada", 94)')
+con.execute('INSERT INTO records VALUES ("Aaron Gregg", "Canada", 88)')
+con.execute('INSERT INTO records VALUES ("Chad Tayor", "USA", 78)')
+
 # Commit and close the connection
 con.commit()
 con.close()
@@ -20,9 +26,8 @@ def add_record_holder(name, country, number_catches):
 
     with sqlite3.connect(db) as con:
         con.execute(insert_data, (name, country, number_catches))
-    
     con.commit()
-
+    
 # Search record holder by their name from database
 def search_record_holder(name):
 
@@ -50,9 +55,13 @@ def update_record_holder(number_catches, name):
         row_updated = updated.rowcount # Show how many rows affected
     con.commit()
 
-    # raise RecordError if there is no row updated
+    # Raise RecordError if there is no record
     if row_updated == 0:
         raise RecordError('Record cannot be found')
+
+    # If the number of cathces input is not number raise RecordError
+    if not isinstance(number_catches, (int)) or number_catches < 0:
+        raise RecordError('Please enter a valid number and positive number.')
 
 # Delete record in database by record holder's name
 def delete_record_holder(name):
@@ -64,7 +73,7 @@ def delete_record_holder(name):
         deleted_count = deleted.rowcount # Show how many row affected
     con.close()
     
-    # raise RecordError if there is no row deleted
+    # Raise RecordError if there is no record
     if deleted_count == 0:
         raise RecordError('Record cannot be found')
 

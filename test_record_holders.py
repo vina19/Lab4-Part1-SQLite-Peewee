@@ -1,10 +1,11 @@
 import record_holder
+from record_holder import RecordError
 import sqlite3
 from unittest import TestCase
 
 class TestRecordHoldersDB(TestCase):
 
-    test_db = 'test_record_holders.db'
+    test_db = 'chainsaw_juggling_db.sqlite'
 
     def setUp(self):
 
@@ -22,6 +23,7 @@ class TestRecordHoldersDB(TestCase):
         
         expected1 = {'Janne Mustonen', 'Finland', 98}
         expected2 = {'Ian Stewart', 'Canada', 94}
+        
         self.compare_db_to_expected(expected1)
         self.compare_db_to_expected(expected2)
 
