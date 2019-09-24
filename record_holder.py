@@ -9,16 +9,6 @@ db = 'chainsaw_juggling_db.sqlite'
 # Create a table name records if it doesn't exist
 con.execute('CREATE TABLE IF NOT EXISTS records (name TEXT, country TEXT, number_catches INTEGER)')
 
-# Add data for testing
-con.execute('INSERT INTO records VALUES ("Janne Mustonen", "Finland", 98)')
-con.execute('INSERT INTO records VALUES ("Ian Stewart", "Canada", 94)')
-con.execute('INSERT INTO records VALUES ("Aaron Gregg", "Canada", 88)')
-con.execute('INSERT INTO records VALUES ("Chad Tayor", "USA", 78)')
-
-# Commit and close the connection
-con.commit()
-con.close()
-
 # Adding record to the database
 def add_record_holder(name, country, number_catches):
 
